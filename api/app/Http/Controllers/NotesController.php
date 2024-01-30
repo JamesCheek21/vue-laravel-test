@@ -23,10 +23,9 @@ class NotesController extends Controller
      */
     public function store(NotesStoreRequest $request)
     {
-        $note = Notes::create([
-            'title' => $request->input['title'],
-            'content' => $$request->input['content'],
-        ]);
+        $data = $request->validated();
+
+        $note = Notes::create($data);
 
         return response()->json($note, 201);
     }

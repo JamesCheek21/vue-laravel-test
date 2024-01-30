@@ -14,8 +14,8 @@ class NotesUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title" => "nullable|string|min:1",
-            "content" => "nullable|string|min:1",
+            "title" => "sometimes|string",
+            "content" => "sometimes|string",
         ];
     }
 }
