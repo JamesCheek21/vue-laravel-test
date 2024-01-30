@@ -17,6 +17,8 @@
    ./vendor/bin/sail artisan migrate
    ```
 
+   If this comes up with a prompt to create the table `api`, select Yes
+
    This should populate the database with the tables from laravel as well as the notes table
 
 3. Once that is done your API endpoint should be `localhost` and going there should bring up the Laravel default greeting page
