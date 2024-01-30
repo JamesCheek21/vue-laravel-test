@@ -1,5 +1,8 @@
 <template>
   <main class="w-5/6 md:w-3/4 lg:w-1/2">
+    <div v-if="saved" class="bg-green-500 text-white p-4 my-4 rounded-md">
+      Note saved successfully!
+    </div>
     <div class="py-5 my-6 border-b-2 flex justify-between items-center">
       <RouterLink to="/" class="hover:underline flex items-center gap-2">
         <svg
@@ -77,12 +80,20 @@ export default {
   data() {
     return {
       note: {},
+      saved: false
     }
   },
   async created() {
     const noteId = this.$route.params.id
     const { data } = await axios.get(`http://localhost/api/notes/${noteId}`)
     this.note = data
+
+    if (this.$route.query.saved) {
+      this.saved = this.$route.query.saved
+      setTimeout(() => {
+        this.saved = false
+      }, 3000)
+    }
   },
   components: { RouterLink }
 }
