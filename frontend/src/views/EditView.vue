@@ -17,7 +17,7 @@
             d="M5 12h14M5 12l4-4m-4 4 4 4"
           />
         </svg>
-        {{ note.title }}
+        Back
       </RouterLink>
     </div>
     <form @submit.prevent="saveNote" class="mt-4">
