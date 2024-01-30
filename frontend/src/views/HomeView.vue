@@ -1,11 +1,10 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
   <main class="w-5/6 md:w-3/4 lg:w-1/2">
     <div v-if="saved" class="bg-green-500 text-white p-4 my-4 rounded-md">
       Note saved successfully!
+    </div>
+    <div v-if="deleted" class="bg-red-500 text-white p-4 my-4 rounded-md">
+      Note deleted successfully!
     </div>
     <div class="py-5 my-6 border-b-2 flex justify-between items-center">
       <p class="text-4xl font-bold">Notes App</p>
@@ -44,6 +43,7 @@ export default {
     return {
       notes: {},
       saved: false,
+      deleted: false
     }
   },
   async created() {
@@ -51,6 +51,13 @@ export default {
       this.saved = this.$route.query.saved
       setTimeout(() => {
         this.saved = false
+      }, 3000)
+    }
+
+    if (this.$route.query.deleted) {
+      this.deleted = this.$route.query.deleted
+      setTimeout(() => {
+        this.deleted = false
       }, 3000)
     }
   },
