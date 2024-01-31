@@ -55,3 +55,47 @@
    ```
 
 2. The output of the tests should be shown in the terminal the results from each test
+
+## Additional Task
+
+Please find below the answers to the additional task section:
+
+```sql
+SELECT
+ *
+FROM
+ submissions
+WHERE
+ JSON_LENGTH(answers, '$."will.trustees"') > 2;
+```
+
+```sql
+SELECT
+ SUM(JSON_LENGTH(answers, '$."will.monetry_gifts"')) sum_of_gifts
+FROM
+ submissions
+WHERE
+ company_id = 2;
+```
+
+```sql
+SELECT
+ JSON_LENGTH(answers, '$."will.monetry_gifts"[*].gift.recipient.is_charity') sum_of_gifts_to_charity
+FROM
+ submissions
+WHERE
+ id = 1;
+```
+
+```php
+Submission::get()
+            ->filter(function ($submission) {
+                $trustees = json_decode($submission->answers)->{'will.trustees'};
+
+                $femaleCount = count(array_filter($trustees, function ($trustee) {
+                    return $trustee->gender === 'female';
+                }));
+
+                return $femaleCount >= 2;
+            });
+```
